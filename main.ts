@@ -70,13 +70,17 @@ namespace KY040 {
 
     function RotaryEncoder() {
         CLKAKTUELL = pins.digitalReadPin(CLKPin)
+        serial.writeLine("Rotary Event")        
         if (CLKAKTUELL != CLKLETZTE) {
-            if (pins.digitalReadPin(DTPin) != CLKAKTUELL) {
+            let DTValue = pins.digitalReadPin(DTPin)
+            if (DTValue != CLKAKTUELL) {
                 Richtung = 1
             } else {
                 Richtung = 0
             }
             EvCounter += 1
+            serial.writeValue("CLK",CLKAKTUELL)
+            serial.writeValue("DT", DTValue)
             if (EvCounter % 2 == 0) { // kill every second Event            
                 if (Richtung == 1) {
                     serial.writeLine("counterclockwise")
