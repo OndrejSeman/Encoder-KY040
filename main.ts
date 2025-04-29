@@ -59,7 +59,7 @@ namespace KY040 {
                 const pressed = pins.digitalReadPin(pin);
                 if (pressed != lastPressed) {
                     lastPressed = pressed;
-                    serial.writeLine("P")
+                    // serial.writeLine("P")
                     if (pressed == 0) control.raiseEvent(pressedID, 0);
                 }
                 basic.pause(50);
@@ -70,7 +70,7 @@ namespace KY040 {
 
     function RotaryEncoder() {
         CLKAKTUELL = pins.digitalReadPin(CLKPin)
-        serial.writeLine("Rotary-Event")        
+        // serial.writeLine("Rotary-Event")        
         if (CLKAKTUELL != CLKLETZTE) {
             let DTValue = pins.digitalReadPin(DTPin)
             if (DTValue != CLKAKTUELL) {
@@ -79,14 +79,14 @@ namespace KY040 {
                 Richtung = 0
             }
             EvCounter += 1
-            serial.writeValue("CLK",CLKAKTUELL)
-            serial.writeValue("DT", DTValue)
+            // serial.writeValue("CLK",CLKAKTUELL)
+            // serial.writeValue("DT", DTValue)
             if (EvCounter % 2 == 0) { // kill every second Event            
                 if (Richtung == 1) {
-                    serial.writeLine("counterclockwise")
+                    // serial.writeLine("counterclockwise")
                     control.raiseEvent(KYEventID + direction.clockwise, direction.clockwise);
                 } else {
-                    serial.writeLine("clockwise")
+                    // serial.writeLine("clockwise")
                     control.raiseEvent(KYEventID + direction.counterclockwise, direction.counterclockwise);
                 }
             }
