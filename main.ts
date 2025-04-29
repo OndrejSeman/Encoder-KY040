@@ -70,7 +70,7 @@ namespace KY040 {
 
     function RotaryEncoder() {
         CLKAKTUELL = pins.digitalReadPin(CLKPin)
-        serial.writeLine("Rotary Event")        
+        serial.writeLine("Rotary-Event")        
         if (CLKAKTUELL != CLKLETZTE) {
             let DTValue = pins.digitalReadPin(DTPin)
             if (DTValue != CLKAKTUELL) {
